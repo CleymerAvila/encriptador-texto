@@ -5,34 +5,39 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Encriptador de Texto</title>
+    <link rel="stylesheet" href="./styles/styles.css">
 </head>
 
 <body>
-    <main>
-        <header>
-            <img src="./assets/Logo.png" alt="Logo de Alura" />
-        </header>
-        <div>
-            <textarea name="ingreso_texto" id="ingreso_texto">Ingrese el texto aqui</textarea>
-            <p>
-                <img src="./assets/exclamacion.png" alt="Signo de exclamacion" />
-                Solo letras en minusculas y sin acentos
-            </p>
-            <input type="button" value="Encriptar" />
-            <input type="button" value="Desencriptar" />
+    <main class="container">
+        <div class="logo">
+            <img src="./assets/Logo.png" alt="Logo de Alura"/>
         </div>
-        <div>
-            <textarea name="resultado_texto" id="resultado_texto" disabled></textarea>
-            <img src="./assets/Muñeco.png" alt="Muñeco buscando mensaje" />
-            <div>
-                <div>
-                    <h3>Ningun Mensaje fue encontrado</h3>
-                </div>
-                <div>
-                    <p>Ingrese el texto que desea encriptar o desencriptar.</p>
-                </div>
+        <div class="container_input">
+            <textarea name="ingreso_texto" id="ingreso_texto_campo" placeholder="Ingrese el texto aqui" rows="12" cols="12"></textarea>
+            <div class="botones">
+                <p id="mensaje_validacion">
+                    <img src="./assets/exclamacion.png" alt="Signo de exclamacion" />
+                    Solo letras en minusculas y sin acentos
+                </p>
+                <button class="boton" id="boton_encriptar">Encriptar</button>
+                <button class="boton" id="boton_desencriptar">Desencriptar</button>
             </div>
-            <input type="button" value="Copiar" disabled />
+        </div>
+        <div class="container_output">
+            <div class="card_output">
+                <textarea name="resultado_texto" id="resultado_texto_campo" style="display: none;"></textarea>
+                <img src="./assets/Muñeco.png" alt="Muñeco buscando mensaje" />
+                <div class="container_mensaje_texto_invalido">
+                    <div id="titulo_mensaje">
+                        <h2>Ningún mensaje fue encontrado</h3>
+                    </div>
+                    <div id="texto_mensaje">
+                        <p>Ingresa el texto que desees encriptar o desencriptar.</p>
+                    </div>
+                </div>
+                <button class="boton" id="boton_copiar" style="display: none;">Copiar</button>
+            </div>
         </div>
     </main>
     <footer>
