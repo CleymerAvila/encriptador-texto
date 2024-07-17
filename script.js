@@ -31,16 +31,21 @@ function encriptacion() {
     textoIngresado = document.getElementById('ingreso_texto_campo').value;
     textoIngresado = textoIngresado.trim();
 
-    if (textoIngresado != ''){
+    if (textoIngresado != '') {
 
-        textoEncriptado = transformarTexto(textoIngresado, clavesEncriptado);
-        cardResultSetting();
-        disappearImage();
-        settingTitle('Encriptado');
-        
-        //console.log(textoEncriptado);
-        printTextResult(textoEncriptado);
-        showCoppyButton();
+        if(!validarTexto(textoIngresado)) {
+            alert("El texto Ingresado no es valido, revise nuevamente");
+        } else {
+            textoEncriptado = transformarTexto(textoIngresado, clavesEncriptado);
+            cardResultSetting();
+            disappearImage();
+            settingTitle('Encriptado');
+            
+            //console.log(textoEncriptado);
+            printTextResult(textoEncriptado);
+            showCoppyButton();
+        }
+
     } else {
         cardResultReset();
     }
@@ -57,14 +62,24 @@ function desencriptacion() {
 
     if (textoIngresado != '') {
 
-        textoDesencriptado = transformarTexto(textoIngresado, clavesDesencriptado);
-        cardResultSetting();
-        disappearImage();
-        settingTitle('Desencriptado');
-        
-        //console.log(textoEncriptado);
-        printTextResult(textoDesencriptado);
-        showCoppyButton();
+        if (!validarTexto(textoIngresado)){
+            alert("El texto Ingresado no es valido, revise nuevamente");
+        } else {
+            textoDesencriptado = transformarTexto(textoIngresado, clavesDesencriptado);
+
+            if (textoIngresado != textoDesencriptado){
+                cardResultSetting();
+                disappearImage();
+                settingTitle('Desencriptado');
+                
+                //console.log(textoEncriptado);
+                printTextResult(textoDesencriptado);
+                showCoppyButton();
+            } else {
+                alert("El texto no se puede desencriptar ya que no esta encriptado");
+            }
+        }
+
     } else {
         cardResultReset();
     }
@@ -100,6 +115,11 @@ function copiarTexto() {
     console.log("se copió");
 }
 
+
+function validarTexto(texto){
+    const regex = /^[a-z\s]+$/;
+    return regex.test(texto);
+}
 // otras funciones
 
 // atributos en la tarjetaResultado
