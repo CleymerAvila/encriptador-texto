@@ -22,7 +22,7 @@
                     Solo letras en minusculas y sin acentos
                 </p>
                 <button onclick="encriptacion();" class="boton" id="boton_encriptar">Encriptar</button>
-                <button class="boton" id="boton_desencriptar">Desencriptar</button>
+                <button onclick="desencriptacion();" class="boton" id="boton_desencriptar">Desencriptar</button>
             </div>
         </div>
         <div class="container_output">
@@ -31,7 +31,7 @@
                     <img src="./assets/Muñeco.png" alt="Muñeco buscando mensaje" />
                 </div>
                 <div id="titulo_mensaje">
-                    <h2>Ningún mensaje fue encontrado</h3>
+                    <h2>Ningún mensaje fue encontrado</h2>
                 </div>
                 <div class="container_mensaje">
                     <div id="texto_mensaje">
@@ -39,13 +39,13 @@
                     </div>
                 </div>
                 <div id="container_boton_copiar">
-                    <button class="boton" id="boton_copiar" style="display: none;">Copiar</button>
+                    <button onclick="copiarTexto();" class="boton" id="boton_copiar" style="display: none;">Copiar</button>
                 </div>
             </div>
         </div>
     </main>
     <footer class="footer">
-        <p id="footer_texto">Cleymer Avila P. 2024</p>
+        <p id="footer_texto">Desarrollado por Cleymer Avila P. 2024</p>
     </footer>
 
     <script src="script.js" defer></script>
