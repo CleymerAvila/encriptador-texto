@@ -117,7 +117,7 @@ function copiarTexto() {
 
 
 function validarTexto(texto){
-    const regex = /^[a-z\s]+$/;
+    const regex = /^[a-z\s.,?!;:'"()\-\[\]{}]+$/;
     return regex.test(texto);
 }
 // otras funciones
