@@ -93,7 +93,14 @@ body{
 
 }
 
-
+.card_output_active{
+    display: flex;
+    flex: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    place-content: space-between;
+}
 
 #ingreso_texto_campo{
     font-family: var(--fuente-inter);
@@ -126,7 +133,7 @@ body{
     justify-items: center;
     gap: 1.5rem;
     align-items: center;
-    width: 95%;
+    width: 100%;
     flex-wrap: wrap;
     box-sizing: border-box;
 }
@@ -184,6 +191,17 @@ body{
     
 }
 
+
+.container_mensaje_active{
+    display: block;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-grow: 1;
+    height: 100%;
+    width: 100%;
+    gap: 32px;
+}
+
 #container_boton_copiar{
     width: 100%;
     margin-top: auto;
@@ -211,6 +229,8 @@ body{
     text-align: center;
     color: var(--color4);
 }
+
+
 #texto_mensaje{
     margin-top: 1rem;
     font-family: var(--fuente-inter);
@@ -365,19 +385,6 @@ body{
     .footer{
         width: 100%;
     }
-
-    /*
-    .botones{
-        display:flex;
-        flex-direction: row;
-        justify-content: space-between;
-        justify-items: center;
-        gap: 1.5rem;
-        align-items: center;
-        width: 95%;
-        flex-wrap: wrap;
-        box-sizing: border-box;
-    }*/
 }
 
 @media (max-height: 1174px) {
@@ -433,19 +440,6 @@ body{
     #mensaje_validacion{
         height: 5%;
     }
-    /*
-    .botones{
-        display:flex;
-        flex-direction:row;
-        justify-content: space-between;
-        justify-items: space-between;
-        gap: 1.5rem;
-        align-items: center;
-        width: 95%;
-        flex-wrap:nowrap;
-        box-sizing: border-box;
-        height: 100%;
-    }*/
 
     .boton{
         width: 48%;
@@ -580,23 +574,6 @@ body{
         height: 50%;
 
     }
-
-
-    /*
-    .card_output{
-        display: flex;
-        flex: auto;
-        width: 80%;
-        justify-content: center;
-        place-content: center;
-        align-items: center;
-        padding: 2rem;
-        height: 100%;
-        min-height: 186px;
-        max-height: 100%;
-    }
-        */
-
 
     #titulo_mensaje{
         width: 100%;

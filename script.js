@@ -9,6 +9,8 @@ const imagen = document.getElementById("imagen");
 const titulo = document.getElementById("titulo_mensaje");
 const resultado = document.getElementById("texto_mensaje");
 const btnCopiar = document.getElementById("boton_copiar");
+const mediaQuery = window.matchMedia('(max-width: 768px)');
+mediaQuery.addEventListener('change',handlesScreenWidthChange);
 const clavesEncriptado = {
     'e': "enter",
     'i': "imes",
@@ -40,18 +42,16 @@ function encriptacion() {
             cardResultSetting();
             disappearImage();
             settingTitle('Encriptado');
-            
-            //console.log(textoEncriptado);
             printTextResult(textoEncriptado);
             showCoppyButton();
         }
-
     } else {
         cardResultReset();
     }
 
     // Limpiar area texto
     limpiarCampoTexto();
+    handlesScreenWidthChange(mediaQuery);
 }
 
 
@@ -71,8 +71,6 @@ function desencriptacion() {
                 cardResultSetting();
                 disappearImage();
                 settingTitle('Desencriptado');
-                
-                //console.log(textoEncriptado);
                 printTextResult(textoDesencriptado);
                 showCoppyButton();
             } else {
@@ -86,6 +84,7 @@ function desencriptacion() {
 
     // Limpiar area texto
     limpiarCampoTexto();
+    handlesScreenWidthChange(mediaQuery);
 }
 
 function transformarTexto(texto, reemplazos) {
@@ -108,6 +107,7 @@ function copiarTexto() {
     // Usa la API del Portapapeles para copiar el texto
     navigator.clipboard.writeText(texto).then(() => {
         cardResultReset();
+        handlesScreenWidthChange(mediaQuery);
     }).catch(err => {
         console.error('Error al copiar el texto: ', err);
     });
@@ -115,6 +115,13 @@ function copiarTexto() {
     console.log("se copió");
 }
 
+function handlesScreenWidthChange(e){
+    if(e.matches){
+        disappearImage();
+    }
+}
+
+handlesScreenWidthChange(mediaQuery);
 
 function validarTexto(texto){
     const regex = /^[a-z\s.,?!;:'"()\-\[\]{}]+$/;
@@ -126,45 +133,24 @@ function validarTexto(texto){
 function cardResultSetting(){
 
     // Codigo para el desplazamiento de la barra dentro de la tarjeta
-    tarjetaResultado.style.display = "flex";
-    tarjetaResultado.style.flex = "none";
-    tarjetaResultado.style.flexDirection = "column";
-    tarjetaResultado.style.alignItems = "center";
-    tarjetaResultado.style.justifyContent = "space-between";
-    tarjetaResultado.style.placeContent = "space-between";
-    
-    //Contenedor texto Resultado
-    contenedorMensaje.style.display = "block";
-    contenedorMensaje.style.overflowY  = "auto";
-    //contenedorMensaje.styleoverflowx = "hidden";
-    contenedorMensaje.style.flexGrow = "1";
-    contenedorMensaje.style.height = "100%";
-    contenedorMensaje.style.with = "90%";
-    //contenedorMensaje.style.gap = "32px";
+    //tarjetaResultado.classList.remove('card_output');
+    tarjetaResultado.classList.add('card_output_active');
+    contenedorMensaje.classList.remove('container_mensaje');
+    contenedorMensaje.classList.add('container_mensaje_active');
 }
 
 
 function cardResultReset(){
-    tarjetaResultado.style.display="block";
-    tarjetaResultado.style.flex = "none";
-    tarjetaResultado.style.alignItems="center";
-    tarjetaResultado.style.justifyContent= "center";
-    tarjetaResultado.style.placeContent= "center";
-    
-    contenedorMensaje.style.display = "flex";
-    contenedorMensaje.style.flexDirection= "column";
-    contenedorMensaje.style.justifyContent = "center";
-    contenedorMensaje.style.alignItems = "center";
-    contenedorMensaje.style.textAlign="center";
-
+    tarjetaResultado.classList.remove('card_output_active');
+    tarjetaResultado.classList.add('card_output')
+    contenedorMensaje.classList.remove('container_mensaje_active');
+    contenedorMensaje.classList.add('container_mensaje');
     showImage();
     titleReset();
-    containerMensajeReset();
     textReset();
     hideCoppyButton();
-    
-
 }
+
 // Cambiar el titulo del resultado
 function settingTitle(estadoTexto){
     titulo.innerHTML = `Mensaje ${estadoTexto}`
@@ -177,7 +163,7 @@ function titleReset(){
     titulo.innerHTML = "Ningún mensaje fue encontrado";
     titulo.style.fontSize= "36px";
     titulo.style.fontWeight = "700";
-    titulo.style.marginTop = "1rem";
+    //titulo.style.marginTop = "1rem";
     titulo.style.fontFamily = "Inter";
     titulo.style.textAlign = "center";
     titulo.style.width = "100%";
@@ -189,30 +175,23 @@ function textReset(){
     resultado.style.fontSize= "1rem";
     resultado.style.fontWeight = "400";
     resultado.style.fontFamily= "Inter";
-    resultado.style.marginTop = "1rem";
+    //resultado.style.marginTop = "1rem";
     resultado.style.textAlign = "center";
     resultado.style.color = "--color3";
-    resultado.style.width = "80%";
+    //resultado.style.width = "80%";
     resultado.style.height = "70%";
 }
 
-function containerMensajeReset(){
-    contenedorMensaje.style.display = "flex";
-    contenedorMensaje.style.flexDirection = "column";
-    contenedorMensaje.style.alignItems = "center";
-    contenedorMensaje.style.textAlign="center";
-    contenedorMensaje.style.width= "100%";
-}
 // texto a imprimir de resultado
 function printTextResult(texto){
     resultado.innerHTML = texto;
     resultado.style.fontSize= "1.5rem";
-    resultado.style.textAlign = "left";
+    resultado.style.textAlign = "justify";
     resultado.style.width = "100%";
     resultado.style.height = "100%";
     resultado.style.alignItems = "center";
     resultado.style.overflowX = "auto";
-    resultado.style.wordBreak = "break-word"; 
+    resultado.style.wordBreak = "break"; 
 }
 
 // Desaparecer imagen
@@ -226,7 +205,7 @@ function showImage(){
 // Boton Copiar
 function showCoppyButton(){
     btnCopiar.style.display = "block";
-    btnCopiar.style.with= "70%";
+   // btnCopiar.style.with= "70%";
     btnCopiar.style.color= "--color2";
     btnCopiar.style.with = "100%";
 }
