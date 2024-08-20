@@ -116,6 +116,9 @@ body{
     color: var(--color2);
 }
 
+#ingreso_texto_campo::placeholder{
+    color: var(--color2);
+}
 #mensaje_validacion{
     font-family: var(--fuente-inter);
     font-weight: 400;
