@@ -257,9 +257,8 @@ body{
 
 .footer{
     justify-content: center;
-    justify-items: center;
     text-align: center;
-    width: auto;
+    width: 100%;
 }
 
 #footer_texto{
